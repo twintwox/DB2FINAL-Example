@@ -2,11 +2,17 @@ $(document).ready(function(){
 	
 	var host= $("#host").val();	
 
-	function ajaxError(url){
+	function ajaxError(url, action){
+		console.log("Error to access "+url+" trying to: "+action);
 		alert("Couldn't connect to Cart");
-		console.log("Error trying to access to"+url);
+		event.preventDefault();
 	}
 
+	function error404(url, action){
+		console.log("Error 404 in "+url+" trying to: "+action)
+		alert("Error 404");
+		event.preventDefault();
+	}
 
 //// ________INDEX.JSP_________/////
 
@@ -23,18 +29,14 @@ $(document).ready(function(){
   			type: 'GET',
   			dataType: 'jsonp', async: false,
   			statusCode: {
-		    404: function() {
-		      		alert( "Cart not working" );
-		    	}
+		    404: error404(host+"token/"+web,"Getting site's token")
 			},
-			error: function (xhr,status,error) {
-               alert("Couldn't connect to Cart API");
-            },
+			error: ajaxError(host+"token/"+web,"Getting site's token"),
 		    beforeSend: function () {
 				$("#console").html("Procesando, espere por favor...");
 			},
 			success:  function (response) {
-				console.log(response);
+				console.log(response);action
 				webToken=$(response).text();
 			}
 		});
@@ -47,14 +49,10 @@ $(document).ready(function(){
   			type: method,
   			dataType: 'jsonp', async: false,
   			statusCode: {
-		    404: function() {
-		      		alert( "Cart not working" );
-		    	}
+		    404: error404(host+"token/"+webToken+"/"+user,"Getting user's token")
 			},
-			error: function (xhr,status,error) {
-               alert("Couldn't connect to Cart API");
-            },
-		    beforeSend: function () {
+			error: ajaxError(host+"token/"+webToken+"/"+user,"Getting user's token"),
+			beforeSend: function () {
 				$("#console").html("Procesando, espere por favor...");
 			},
 			success:  function (response) {
@@ -123,14 +121,10 @@ var token = $("#userToken").val();
   			type: method,
   			dataType: 'jsonp',
   			statusCode: {
-		    404: function() {
-		      		alert( "Cart not working" );
-		    	}
+		    404: error404(host+url,"Performing action")
 			},
-			error: function (xhr,status,error) {
-               alert("Couldn't connect to Cart API");
-            },
-		    beforeSend: function () {
+			error: ajaxError(host+url,"Performing action"),
+			beforeSend: function () {
 				console.log("Procesando, espere por favor...");
 			},
 			success:  function (response) {
@@ -149,14 +143,10 @@ var token = $("#userToken").val();
   			type: 'GET',
   			dataType: 'jsonp',
   			statusCode: {
-		    404: function() {
-		      		alert( "Cart not working" );
-		    	}
+		    404: error404(host+"cart/"+token,"Refreshing cart")
 			},
-			error: function (xhr,status,error) {
-               alert("Couldn't connect to Cart API");
-            },
-		    beforeSend: function () {
+			error: ajaxError(host+"cart/"+token,"Refreshing cart"),
+			beforeSend: function () {
 				console.log("Procesando, espere por favor...");
 			},
 			success:  function (response) {
