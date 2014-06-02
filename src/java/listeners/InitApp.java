@@ -22,7 +22,7 @@ public class InitApp implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         
-        sce.getServletContext().setAttribute("host", "http://localhost:8085/");
+        sce.getServletContext().setAttribute("host", "http://localhost:8881/bd2/");
       
         
         HashSet<Product> products = new HashSet();

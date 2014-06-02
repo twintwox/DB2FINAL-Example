@@ -2,6 +2,11 @@ $(document).ready(function(){
 	
 	var host= $("#host").val();	
 
+	function ajaxError(url){
+		alert("Couldn't connect to Cart");
+		console.log("Error trying to access to"+url);
+	}
+
 
 //// ________INDEX.JSP_________/////
 
@@ -16,7 +21,7 @@ $(document).ready(function(){
 			//token/{site-name} 
   			url:host+"token/"+web,
   			type: 'GET',
-  			async: false,
+  			dataType: 'jsonp', async: false,
   			statusCode: {
 		    404: function() {
 		      		alert( "Cart not working" );
@@ -29,6 +34,7 @@ $(document).ready(function(){
 				$("#console").html("Procesando, espere por favor...");
 			},
 			success:  function (response) {
+				console.log(response);
 				webToken=$(response).text();
 			}
 		});
@@ -39,7 +45,7 @@ $(document).ready(function(){
 			//token/{site-token}/{user-id}
   			url:host+"token/"+webToken+"/"+user,
   			type: method,
-  			async: false,
+  			dataType: 'jsonp', async: false,
   			statusCode: {
 		    404: function() {
 		      		alert( "Cart not working" );
@@ -115,6 +121,7 @@ var token = $("#userToken").val();
 		$.ajax({
   			url:host+url,
   			type: method,
+  			dataType: 'jsonp',
   			statusCode: {
 		    404: function() {
 		      		alert( "Cart not working" );
@@ -130,7 +137,7 @@ var token = $("#userToken").val();
 				console.log("Operacion terminada...");
 			}
 		});
-		refreshCart();
+		//refreshCart();
 	});
 
 
@@ -140,6 +147,7 @@ var token = $("#userToken").val();
 		$.ajax({
   			url:host+"cart/"+token,
   			type: 'GET',
+  			dataType: 'jsonp',
   			statusCode: {
 		    404: function() {
 		      		alert( "Cart not working" );
