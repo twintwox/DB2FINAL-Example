@@ -8,12 +8,6 @@ $(document).ready(function(){
 		event.preventDefault();
 	}
 
-	function error404(url, action){
-		console.log("Error 404 in "+url+" trying to: "+action)
-		alert("Error 404");
-		event.preventDefault();
-	}
-
 //// ________INDEX.JSP_________/////
 
 	$("#initForm").on("submit",function(){
@@ -28,9 +22,6 @@ $(document).ready(function(){
   			url:host+"token/"+web,
   			type: 'GET',
   			dataType: 'jsonp', async: false,
-  			statusCode: {
-		    404: error404(host+"token/"+web,"Getting site's token")
-			},
 			error: ajaxError(host+"token/"+web,"Getting site's token"),
 		    beforeSend: function () {
 				$("#console").html("Procesando, espere por favor...");
@@ -48,9 +39,6 @@ $(document).ready(function(){
   			url:host+"token/"+webToken+"/"+user,
   			type: 'GET',
   			dataType: 'jsonp', async: false,
-  			statusCode: {
-		    404: error404(host+"token/"+webToken+"/"+user,"Getting user's token")
-			},
 			error: ajaxError(host+"token/"+webToken+"/"+user,"Getting user's token"),
 			beforeSend: function () {
 				$("#console").html("Procesando, espere por favor...");
@@ -120,9 +108,6 @@ var token = $("#userToken").val();
   			url:host+url,
   			type: method,
   			dataType: 'jsonp',
-  			statusCode: {
-		    404: error404(host+url,"Performing action")
-			},
 			error: ajaxError(host+url,"Performing action"),
 			beforeSend: function () {
 				console.log("Procesando, espere por favor...");
@@ -142,9 +127,6 @@ var token = $("#userToken").val();
   			url:host+"cart/"+token,
   			type: 'GET',
   			dataType: 'jsonp',
-  			statusCode: {
-		    404: error404(host+"cart/"+token,"Refreshing cart")
-			},
 			error: ajaxError(host+"cart/"+token,"Refreshing cart"),
 			beforeSend: function () {
 				console.log("Procesando, espere por favor...");
