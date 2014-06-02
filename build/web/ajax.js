@@ -22,6 +22,9 @@ $(document).ready(function(){
 		      		alert( "Cart not working" );
 		    	}
 			},
+			error: function (xhr,status,error) {
+               alert("Couldn't connect to Cart API");
+            },
 		    beforeSend: function () {
 				$("#console").html("Procesando, espere por favor...");
 			},
@@ -42,6 +45,9 @@ $(document).ready(function(){
 		      		alert( "Cart not working" );
 		    	}
 			},
+			error: function (xhr,status,error) {
+               alert("Couldn't connect to Cart API");
+            },
 		    beforeSend: function () {
 				$("#console").html("Procesando, espere por favor...");
 			},
@@ -114,6 +120,9 @@ var token = $("#userToken").val();
 		      		alert( "Cart not working" );
 		    	}
 			},
+			error: function (xhr,status,error) {
+               alert("Couldn't connect to Cart API");
+            },
 		    beforeSend: function () {
 				console.log("Procesando, espere por favor...");
 			},
@@ -136,6 +145,9 @@ var token = $("#userToken").val();
 		      		alert( "Cart not working" );
 		    	}
 			},
+			error: function (xhr,status,error) {
+               alert("Couldn't connect to Cart API");
+            },
 		    beforeSend: function () {
 				console.log("Procesando, espere por favor...");
 			},
