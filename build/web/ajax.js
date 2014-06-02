@@ -36,7 +36,7 @@ $(document).ready(function(){
 				$("#console").html("Procesando, espere por favor...");
 			},
 			success:  function (response) {
-				console.log(response);action
+				console.log(response);
 				webToken=$(response).text();
 			}
 		});
@@ -46,7 +46,7 @@ $(document).ready(function(){
 		$.ajax({
 			//token/{site-token}/{user-id}
   			url:host+"token/"+webToken+"/"+user,
-  			type: method,
+  			type: 'GET',
   			dataType: 'jsonp', async: false,
   			statusCode: {
 		    404: error404(host+"token/"+webToken+"/"+user,"Getting user's token")
