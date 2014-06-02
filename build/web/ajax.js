@@ -21,14 +21,15 @@ $(document).ready(function(){
 			//token/{site-name} 
   			url:host+"token/"+web,
   			type: 'GET',
-  			dataType: 'jsonp', async: false,
-			error: ajaxError(host+"token/"+web,"Getting site's token"),
+  			async: false,
+			error: function(xhr, status, error) {
+			  console.error("ESTE ES EL ERROR !!!!: "+error);
+			},
 		    beforeSend: function () {
 				$("#console").html("Procesando, espere por favor...");
 			},
 			success:  function (response) {
-				console.log(response);
-				webToken=$(response).text();
+				webToken=response;
 			}
 		});
 
@@ -37,20 +38,25 @@ $(document).ready(function(){
 		$.ajax({
 			//token/{site-token}/{user-id}
   			url:host+"token/"+webToken+"/"+user,
-  			type: 'GET',
-  			dataType: 'jsonp', async: false,
-			error: ajaxError(host+"token/"+webToken+"/"+user,"Getting user's token"),
+  			type: 'POST',
+  			async: false,
+			error: function(xhr, status, error) {
+			  console.error("ESTE ES EL ERROR !!!!: "+error);
+			},
 			beforeSend: function () {
 				$("#console").html("Procesando, espere por favor...");
 			},
 			success:  function (response) {
-				userToken=$(response).text();
+				console.log(response);
+				userToken=response;
 			}
 		});		
 
 		//SAVE BOTH TOKENS
 		$("#webToken").val(webToken);
 		$("#userToken").val(userToken);
+
+		//event.preventDefault();
 	});
 
 ////////////////////////////////////////
@@ -59,12 +65,12 @@ $(document).ready(function(){
 
 var token = $("#userToken").val();
 
+
 	$(".btn").on("click",function(){
 		//THIS EVALUATES AND PERFORM EACH ACTION
-
 		var pid= $(this).attr("id").split("-")[0];
 		var action = $(this).attr("id").split("-")[1];
-		var value,url,method,token;
+		var value,url,method;
 
 		//DECIDES ACTION
 		switch (action){
@@ -107,8 +113,10 @@ var token = $("#userToken").val();
 		$.ajax({
   			url:host+url,
   			type: method,
-  			dataType: 'jsonp',
-			error: ajaxError(host+url,"Performing action"),
+  			dataType: 'json',
+			error: function(xhr, status, error) {
+			  console.error("ESTE ES EL ERROR !!!!: "+error);
+			},
 			beforeSend: function () {
 				console.log("Procesando, espere por favor...");
 			},
@@ -116,7 +124,7 @@ var token = $("#userToken").val();
 				console.log("Operacion terminada...");
 			}
 		});
-		//refreshCart();
+		refreshCart();
 	});
 
 
@@ -126,14 +134,17 @@ var token = $("#userToken").val();
 		$.ajax({
   			url:host+"cart/"+token,
   			type: 'GET',
-  			dataType: 'jsonp',
-			error: ajaxError(host+"cart/"+token,"Refreshing cart"),
+  			dataType: 'json',
+			error: function(xhr, status, error) {
+			  console.error("ESTE ES EL ERROR !!!!: "+error);
+			},
 			beforeSend: function () {
 				console.log("Procesando, espere por favor...");
 			},
 			success:  function (response) {
-				$("#cart").html("response");
-				console.log("Carrito actualizado");
+				console.log(response.site);
+				console.log(response.products[0]);
+				console.log(response);
 			}
 		});
 	};
