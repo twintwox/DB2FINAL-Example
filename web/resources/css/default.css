@@ -1,0 +1,14 @@
+.carrito{
+border: 1px solid blue;
+padding: 1em;
+}
+ul li a.btn{
+    display: initial !important;
+}
+.dropdown-menu{
+    min-width: 0px !important;
+}
+.input-group{
+    width: 10em !important;
+}
+            
