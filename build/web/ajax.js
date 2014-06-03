@@ -149,8 +149,8 @@ var token = $("#userToken").val();
 					var id = Object.keys(quantities)[i];
 					var quantity = quantities[id];
 
-					var name= $("#prod-"+id);
-					var value=$("#val-"+id);
+					var name= $("#prod-"+id).val();
+					var value=$("#val-"+id).val();
 
 
 					console.log(id + ": " +name+" "+value+" "+quantity );
