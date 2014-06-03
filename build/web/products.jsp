@@ -39,8 +39,8 @@
         
         <tr>
             
-            <td>  <%= p.getName() %>  </td>
-            <td>  $<%= p.getPrice() %>  </td>
+            <td>  <%= p.getName() %> <input type="hidden" id="prod-<%= p.getId()%>" value="<%= p.getName() %>"/> </td>
+            <td>  $<%= p.getPrice() %>  <input type="hidden" id="val-<%= p.getId()%>" value="<%= p.getPrice()%>"/>  </td>
             <td><button class="btn" id="<%= p.getId()%>-more" >+</button></td>
             <td><button class="btn" id="<%= p.getId()%>-less"  >-</button></td>
             
