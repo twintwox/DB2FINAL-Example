@@ -113,6 +113,7 @@ var token = $("#userToken").val();
 		$.ajax({
   			url:host+url,
   			type: method,
+  			async:false,
   			dataType: 'json',
 			error: function(xhr, status, error) {
 			  console.error(error);
@@ -134,6 +135,7 @@ var token = $("#userToken").val();
 		$.ajax({
   			url:host+"cart/"+token,
   			type: 'GET',
+  			async:false,
   			dataType: 'json',
 			error: function(xhr, status, error) {
 			  $("#cart").html("Error al conectarse con el servicio");	
