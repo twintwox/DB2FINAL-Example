@@ -144,10 +144,16 @@ var token = $("#userToken").val();
 			success:  function (response) {
 				var quantities = response.products;
 				var length = Object.keys(quantities).length;
+				var total=0;
 				for (var i = 0; i < length; i++) {
-					var product = Object.keys(quantities)[i];
-					var quantity = quantities[product];
-					console.log(product + ": " + quantity);
+					var id = Object.keys(quantities)[i];
+					var quantity = quantities[id];
+
+					var name= $("#prod-"+id);
+					var value=$("#val-"+id);
+
+
+					console.log(id + ": " +name+" "+value+" "+quantity );
 				}
 			}
 		});
