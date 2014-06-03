@@ -23,7 +23,7 @@ $(document).ready(function(){
   			type: 'GET',
   			async: false,
 			error: function(xhr, status, error) {
-			  console.error("ESTE ES EL ERROR !!!!: "+error);
+			  console.error(error);
 			},
 		    beforeSend: function () {
 				$("#console").html("Procesando, espere por favor...");
@@ -41,7 +41,7 @@ $(document).ready(function(){
   			type: 'POST',
   			async: false,
 			error: function(xhr, status, error) {
-			  console.error("ESTE ES EL ERROR !!!!: "+error);
+			  console.error(error);
 			},
 			beforeSend: function () {
 				$("#console").html("Procesando, espere por favor...");
@@ -115,7 +115,7 @@ var token = $("#userToken").val();
   			type: method,
   			dataType: 'json',
 			error: function(xhr, status, error) {
-			  console.error("ESTE ES EL ERROR !!!!: "+error);
+			  console.error(error);
 			},
 			beforeSend: function () {
 				console.log("Procesando, espere por favor...");
@@ -136,14 +136,12 @@ var token = $("#userToken").val();
   			type: 'GET',
   			dataType: 'json',
 			error: function(xhr, status, error) {
-			  console.error("ESTE ES EL ERROR !!!!: "+error);
+			  console.error(error);
 			},
 			beforeSend: function () {
 				console.log("Procesando, espere por favor...");
 			},
 			success:  function (response) {
-				console.log(response.site);
-				console.log(response.products[0]);
 				console.log(response);
 			}
 		});
