@@ -150,6 +150,8 @@ var token = $("#userToken").val();
 				var quantities = response.products;
 				var length = Object.keys(quantities).length;
 				var total=0;
+
+				$("#cart").append('<th>Producto</th><th>Cantidad</th><th>Precio</th>');
 				for (var i = 0; i < length; i++) {
 					var id = Object.keys(quantities)[i];
 					var quantity = quantities[id];
@@ -157,10 +159,10 @@ var token = $("#userToken").val();
 					var name= $("#prod-"+id).val();
 					var value=$("#val-"+id).val();
 					
-					$("#cart").append('<div><label class="productName">'+name+"</label> x"+quantity+": "+(quantity*value)+'</div>');
+					$("#cart").append('<tr><td>'+name+"</td><td>x"+quantity+"</td><td>"+(quantity*value)+'</td></tr>');
 					total+=(quantity*value);
 				}
-				$("#cart").append('<div><label class="totalValue">Total:</label>'+total+'</div>');
+				$("#cart").append('<tr class="success"><td>Total: '+total+'</td><td></td><td></td></tr>');
 			}
 		});
 	};
