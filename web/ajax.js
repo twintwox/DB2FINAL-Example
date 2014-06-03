@@ -56,7 +56,6 @@ $(document).ready(function(){
 		$("#webToken").val(webToken);
 		$("#userToken").val(userToken);
 
-		//event.preventDefault();
 	});
 
 ////////////////////////////////////////
@@ -131,7 +130,6 @@ var token = $("#userToken").val();
 
 	//REFRESH CART
 	function refreshCart(){
-		// cart/{cart-token}
 		$.ajax({
   			url:host+"cart/"+token,
   			type: 'GET',
