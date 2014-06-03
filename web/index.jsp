@@ -12,6 +12,9 @@
         <title>Inicio</title>
         <script src="jquery.js" type="text/javascript"></script>
         <script src="ajax.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="resources/css/default.css" />
+        <script src="resources/bootstrap/js/bootstrap.min.js"></script>
        
     </head>
     <body>
@@ -23,7 +26,7 @@
             <input type="hidden" id="host" value="<%= application.getAttribute("host") %>">
             <input type="hidden" id="webToken" name="webToken" />
             <input type="hidden" id="userToken" name="userToken"/>
-            <input type="submit" value="Ingresar"/>
+            <input type="submit"  class="btn" value="Ingresar"/>
         </form>
     </body>
 </html>

@@ -56,6 +56,7 @@ $(document).ready(function(){
 		$("#webToken").val(webToken);
 		$("#userToken").val(userToken);
 
+		//event.preventDefault();
 	});
 
 ////////////////////////////////////////
@@ -65,25 +66,23 @@ $(document).ready(function(){
 var token = $("#userToken").val();
 
 
-	$(".btn").on("click",function(){
+	$(".btn-action").on("click",function(){
 		//THIS EVALUATES AND PERFORM EACH ACTION
 		var pid= $(this).attr("id").split("-")[0];
 		var action = $(this).attr("id").split("-")[1];
 		var value,url,method;
-
+                value=$("#input-"+pid).val();
 		//DECIDES ACTION
 		switch (action){
 			case "add":
 				//	cart/{cart-token}/{id-product}/{quantity}
 				method="POST";
-				value=$(this).parent().parent().find(".value").val();
 				url= "cart/"+token+"/"+pid+"/"+value;
 				break;
 			case "remove":
 				//  cart/{cart-token}/{id-product}/{quantity}
-				method="DELELTE";
+				method="DELETE";
 				url= "cart/"+token+"/"+pid+"/"+value;
-				value=$(this).parent().parent().find(".value").val();
 				break;
 			case "more":
 				//  cart/{cart-token}/{id-product}
@@ -103,8 +102,11 @@ var token = $("#userToken").val();
 			case "set":
 				//	cart/{cart-token}/{id-product}/set/{quantity}
 				method="POST";
-				value=$(this).parent().parent().find(".value").val();
 				url= "cart/"+token+"/"+pid+"/set/"+value;
+				break;
+			case "checkout":
+				method="DELETE";
+				url="cart/"+token;
 				break;
 		}
 
@@ -130,6 +132,7 @@ var token = $("#userToken").val();
 
 	//REFRESH CART
 	function refreshCart(){
+		// cart/{cart-token}
 		$.ajax({
   			url:host+"cart/"+token,
   			type: 'GET',
@@ -149,7 +152,7 @@ var token = $("#userToken").val();
 				var length = Object.keys(quantities).length;
 				var total=0;
 
-				$("#cart").append('<th>Producto</th><th>Cantidad</th><th>Precio</th>');
+				$("#cart").append('<tr><th>Producto</th><th>Cantidad</th><th>Precio</th></tr>');
 				for (var i = 0; i < length; i++) {
 					var id = Object.keys(quantities)[i];
 					var quantity = quantities[id];
@@ -157,10 +160,11 @@ var token = $("#userToken").val();
 					var name= $("#prod-"+id).val();
 					var value=$("#val-"+id).val();
 					
-					$("#cart").append('<tr><td>'+name+"</td><td>x"+quantity+"</td><td>"+(quantity*value)+'</td></tr>');
+					$("#input-"+id).val(quantity);
+					$("#cart").append('<tr><td>'+name+"</td><td>x"+quantity+"</td><td>$"+(quantity*value)+'</td></tr>');
 					total+=(quantity*value);
 				}
-				$("#cart").append('<tr class="success"><td>Total: '+total+'</td><td></td><td></td></tr>');
+				$("#cart").append('<tr class="success"><td><b>Total:</td><td></td><td>$'+total+'</b></td></tr>');
 			}
 		});
 	};

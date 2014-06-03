@@ -2,7 +2,7 @@
 border: 1px solid blue;
 padding: 1em;
 }
-ul li a.btn{
+ul li a.btn-action{
     display: initial !important;
 }
 .dropdown-menu{
@@ -11,4 +11,7 @@ ul li a.btn{
 .input-group{
     width: 10em !important;
 }
-            
+        
+.row {
+    margin: 0;
+}

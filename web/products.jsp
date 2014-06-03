@@ -39,30 +39,30 @@
               <td>  <%= p.getName() %> <input type="hidden" id="prod-<%= p.getId()%>" value="<%= p.getName() %>"/> </td>
               <td>  $<%= p.getPrice() %>  <input type="hidden" id="val-<%= p.getId()%>" value="<%= p.getPrice()%>"/>  </td>
               <td>
-                  <button type="button" class="btn btn-default btn-sm" id="<%= p.getId()%>-more">
+                  <button type="button" class="btn btn-default btn-sm btn-action" id="<%= p.getId()%>-more">
                     <span class="glyphicon glyphicon-plus"></span> 
                   </button>
                   
-                  <button type="button" class="btn btn-default btn-sm" id="<%= p.getId()%>-less">
+                  <button type="button" class="btn btn-default btn-sm btn-action" id="<%= p.getId()%>-less">
                     <span class="glyphicon glyphicon-minus"></span> 
                   </button>
               </td>
    
               <td>
                 <div class="input-group">
-                  <input type="number" placeholder="cantidad" value="0" min="0" class="value form-control" />
+                  <input type="number" id="input-<%= p.getId()%>" placeholder="cantidad" value="0" min="0" class="value form-control" />
                   <div class="input-group-btn">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
                     <ul class="dropdown-menu pull-right">
-                        <li><a class="btn" id="<%= p.getId()%>-set" href="#" >Establecer</a></li>
-                        <li><a class="btn" id="<%= p.getId()%>-add" href="#" >Agregar</a></li>
-                        <li><a class="btn" id="<%= p.getId()%>-remove" href="#" >Quitar</a></li> 
+                        <li><a class="btn-action" id="<%= p.getId()%>-set" href="#" >Establecer</a></li>
+                        <li><a class="btn-action" id="<%= p.getId()%>-add" href="#" >Agregar</a></li>
+                        <li><a class="btn-action" id="<%= p.getId()%>-remove" href="#" >Quitar</a></li> 
                     </ul>
                   </div><!-- /btn-group -->
                 </div><!-- /input-group -->
               </td>            
               <td>            
-                  <button type="button" class="btn btn-danger btn-sm" id="<%= p.getId()%>-delete">
+                  <button type="button" class="btn btn-action btn-danger btn-sm" id="<%= p.getId()%>-delete">
                     <span class="glyphicon glyphicon-remove"></span> 
                   </button>
               </td>
@@ -76,11 +76,15 @@
             </div>
             <div class="col-xs-6 col-md-4">
             <div class="panel panel-success">
-            <div class="carrito panel-heading"> Carrito de compras</div>
+            <div class="carrito panel-heading"> Carrito de compras | 
+            <a href="index.jsp" class="btn-action" id="0-checkout">Checkout!!</a>
+            
+            </div>
             <div class="panel-body">
-                <table id="cart" class="table-condensed">
+                <table id="cart" class="table-condensed table">
                 </table>
             </div>
+            
             </div>
             </div>
      </div>
