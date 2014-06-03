@@ -136,12 +136,15 @@ var token = $("#userToken").val();
   			type: 'GET',
   			dataType: 'json',
 			error: function(xhr, status, error) {
+			  $("#cart").html("Error al conectarse con el servicio");	
 			  console.error(error);
 			},
 			beforeSend: function () {
 				console.log("Procesando, espere por favor...");
 			},
+
 			success:  function (response) {
+				$("#cart").html("");
 				var quantities = response.products;
 				var length = Object.keys(quantities).length;
 				var total=0;
@@ -151,10 +154,11 @@ var token = $("#userToken").val();
 
 					var name= $("#prod-"+id).val();
 					var value=$("#val-"+id).val();
-
-
-					console.log(id + ": " +name+" "+value+" "+quantity );
+					
+					$("#cart").append('<div><label class="productName">'+name+"</label> x"+quantity+": "+(quantity*value)+'</div>');
+					total+=(quantity*value);
 				}
+				$("#cart").append('<div><label class="totalValue">Total:</label>'+total+'</div>');
 			}
 		});
 	};
